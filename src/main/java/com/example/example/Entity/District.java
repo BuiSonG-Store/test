@@ -5,14 +5,15 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@Builder
 @Entity
 @Table(name = "district")
-public class District {
+public class District extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id ;
+    private Integer id;
     private String name;
 }

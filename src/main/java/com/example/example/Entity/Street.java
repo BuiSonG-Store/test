@@ -1,25 +1,27 @@
 package com.example.example.Entity;
 
-import com.example.example.Status.StreetStatus;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@Builder
 @Entity
 @Table(name = "street")
-public class Street {
+public class Street extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id ;
+    private Integer id;
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "district_id")
-    private District district;
     private String description;
+    @Enumerated(EnumType.ORDINAL)
     private StreetStatus status;
+    private Integer districtId;
+    @ManyToOne
+    @JoinColumn(name = "districtId", insertable = false, updatable = false)
+    private District district;
 }
